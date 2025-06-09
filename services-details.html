@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Detallados - CompuFix</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .service-card {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .service-header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .service-body {
+            padding: 20px;
+        }
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+        .service-features li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        .service-features li:before {
+            content: "✓";
+            color: #0d6efd;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .service-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #ffc107;
+            color: #000;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">CompuFix</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+    <li class="nav-item">
+        <a class="nav-link" href="index.html">Inicio</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="services.html">Servicios</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="services-details.html">Detalles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="referral.html">Referidos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="contact.html">Contacto</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="coment.html">Comentarios</a>
+    </li>
+    <li class="nav-item" id="profileNavItem" >
+        <a class="nav-link" href="dashboard.html">Mi Perfil</a>
+    </li>
+    
+</ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4">Nuestros Servicios Detallados</h1>
+            <p class="lead">Soluciones técnicas personalizadas para cada necesidad</p>
+        </div>
+
+        <div class="row">
+            <!-- Mantenimiento Preventivo -->
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card position-relative">
+                    <div class="service-badge">15%</div>
+                    <div class="service-header">
+                        <h3>Mantenimiento Preventivo</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-price">$20</div>
+                        <p class="text-muted">Incluye:</p>
+                        <ul class="service-features">
+                            <li>Limpieza interna profunda</li>
+                            <li>Cambio de pasta térmica premium</li>
+                            <li>Optimización de sistema operativo</li>
+                            <li>Diagnóstico completo de hardware</li>
+                            <li>Revisión de componentes críticos</li>
+                            <li>Informe técnico detallado</li>
+                        </ul>
+                        <div class="d-grid">
+                            <button class="btn btn-primary" data-service="Mantenimiento Preventivo" data-price="20">Solicitar Servicio</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reparación de Hardware -->
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3>Reparación de Hardware</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-price">Desde $30</div>
+                        <p class="text-muted">Servicios comunes:</p>
+                        <ul class="service-features">
+                            <li>Cambio de pantallas (desde $50)</li>
+                            <li>Reparación de teclados (desde $30)</li>
+                            <li>Reemplazo de discos duros/SSD (desde $40)</li>
+                            <li>Reparación de fuentes de poder (desde $35)</li>
+                            <li>Sustitución de ventiladores (desde $25)</li>
+                            <li>Reparación de puertos USB (desde $30)</li>
+                        </ul>
+                        <div class="d-grid">
+                            <button class="btn btn-primary" data-service="Reparación de Hardware" data-price="30">Solicitar Servicio</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soporte de Software -->
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3>Soporte de Software</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-price">$10</div>
+                        <p class="text-muted">Incluye:</p>
+                        <ul class="service-features">
+                            <li>Instalación de sistemas operativos</li>
+                            <li>Eliminación de virus/malware</li>
+                            <li>Recuperación de datos básica</li>
+                            <li>Optimización de rendimiento</li>
+                            <li>Configuración de programas</li>
+                            <li>Respaldo de información</li>
+                        </ul>
+                        <div class="d-grid">
+                            <button class="btn btn-primary" data-service="Soporte de Software" data-price="10">Solicitar Servicio</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recuperación de Datos -->
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card position-relative">
+                    <div class="service-badge">10%</div>
+                    <div class="service-header">
+                        <h3>Recuperación de Datos</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-price">Desde $40</div>
+                        <p class="text-muted">Para:</p>
+                        <ul class="service-features">
+                            <li>Discos duros dañados</li>
+                            <li>Unidades SSD corruptas</li>
+                            <li>Memorias USB/USB no reconocidas</li>
+                            <li>Tarjetas SD dañadas</li>
+                            <li>Archivos eliminados accidentalmente</li>
+                            <li>Particiones perdidas</li>
+                        </ul>
+                        <div class="d-grid">
+                            <button class="btn btn-primary" data-service="Recuperación de Datos" data-price="40">Solicitar Servicio</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soporte Remoto -->
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3>Soporte Remoto</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-price">$15/hora</div>
+                        <p class="text-muted">Servicios incluyen:</p>
+                        <ul class="service-features">
+                            <li>Asistencia técnica en tiempo real</li>
+                            <li>Solución de problemas de software</li>
+                            <li>Configuración de programas</li>
+                            <li>Instalación remota de aplicaciones</li>
+                            <li>Optimización de sistema</li>
+                            <li>Diagnóstico preliminar</li>
+                        </ul>
+                        <div class="d-grid">
+                            <button class="btn btn-primary" data-service="Soporte Remoto" data-price="15">Solicitar Servicio</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan Anual -->
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card position-relative">
+                    <div class="service-badge">20%</div>
+                    <div class="service-header">
+                        <h3>Plan Anual</h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-price">$150/año</div>
+                        <p class="text-muted">Beneficios:</p>
+                        <ul class="service-features">
+                            <li>4 mantenimientos preventivos al año</li>
+                            <li>10% descuento en reparaciones</li>
+                            <li>Soporte prioritario</li>
+                            <li>2 asesorías técnicas gratuitas</li>
+                            <li>Diagnósticos gratuitos ilimitados</li>
+                            <li>Garantía extendida en servicios</li>
+                        </ul>
+                        <div class="d-grid">
+                            <button class="btn btn-primary" data-service="Plan Anual" data-price="150">Contratar Plan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="card border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">¿Necesitas algo más específico?</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Si no encuentras el servicio que necesitas en nuestro catálogo, no dudes en contactarnos. Nuestro equipo de técnicos certificados puede desarrollar soluciones personalizadas para tus necesidades específicas.</p>
+                        <a href="contact.html" class="btn btn-outline-primary">Contáctanos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de selección de servicio (mismo que en services.html) -->
+    <div class="modal fade" id="serviceModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="serviceModalTitle">Solicitar Servicio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="serviceForm">
+                        <input type="hidden" id="selectedService">
+                        <input type="hidden" id="selectedPrice">
+                        
+                        <div class="mb-3">
+                            <label for="serviceType" class="form-label">Tipo de Servicio</label>
+                            <select class="form-select" id="serviceType" required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="online">Soporte Remoto (Online)</option>
+                                <option value="taller">En Taller (Santa Tecla)</option>
+                                <option value="domicilio">Servicio a Domicilio</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3" id="addressField" style="display: none;">
+                            <label for="address" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="address">
+                            <small class="text-muted">*Costo adicional según ubicación ($3-$10)</small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="problemDescription" class="form-label">Descripción del Problema</label>
+                            <textarea class="form-control" id="problemDescription" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="preferredDate" class="form-label">Fecha Preferida</label>
+                            <input type="date" class="form-control" id="preferredDate" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmService">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Contacto</h5>
+                    <p>Santa Tecla, La Libertad, El Salvador</p>
+                    <p>Email: info@compufix.com</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5>Horario</h5>
+                    <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 12:00 PM</p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2025 CompuFix. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/fileStorage.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/shared.js"></script>
+
+</body>
+</html>

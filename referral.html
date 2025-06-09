@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa de Referidos - CompuFix</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .referral-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+        .referral-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .referral-header {
+            background-color: #0d6efd;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .referral-body {
+            padding: 25px;
+        }
+        .discount-code {
+            background-color: #f8f9fa;
+            border: 2px dashed #0d6efd;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin: 20px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .discount-code:hover {
+            background-color: #e9ecef;
+        }
+        .discount-code.copied {
+            background-color: #d1e7dd;
+            border-color: #198754;
+            color: #0f5132;
+        }
+        .step {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        .step-number {
+            background-color: #0d6efd;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .referral-stats {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .share-btn {
+            flex: 1;
+            min-width: 120px;
+        }
+        .code-input-container {
+            max-width: 400px;
+            margin: 0 auto 20px;
+        }
+        .code-input {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .validate-btn {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .result-message {
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            min-height: 24px;
+        }
+        .valid-code {
+            color: #198754;
+        }
+        .invalid-code {
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">CompuFix</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+    <li class="nav-item">
+        <a class="nav-link" href="index.html">Inicio</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="services.html">Servicios</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="services-details.html">Detalles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="referral.html">Referidos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="contact.html">Contacto</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="coment.html">Comentarios</a>
+    </li>
+    <li class="nav-item" id="profileNavItem" >
+        <a class="nav-link" href="dashboard.html">Mi Perfil</a>
+    </li>
+    
+</ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4">Programa de Referidos</h1>
+            <p class="lead">Gana descuentos recomendando nuestros servicios</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="referral-card">
+                    <div class="referral-header">
+                        <h3><i class="bi bi-people-fill"></i> Tu Código de Referido</h3>
+                    </div>
+                    <div class="referral-body">
+                        <div id="userCodeSection">
+                            <p>Inicia sesión para obtener tu código personalizado o usa nuestro código general:</p>
+                            <div class="discount-code" id="generalCode" onclick="copyToClipboard('generalCode')">COMPUFIX15</div>
+                            <p class="text-center">Este código otorga un 15% de descuento tanto a ti como a tu referido</p>
+                            <div class="alert alert-info">
+                                <strong>¡Atención!</strong> Para obtener tu código personal y acceder a estadísticas de referidos, debes <a href="login.html" class="alert-link">iniciar sesión</a> o <a href="register.html" class="alert-link">registrarte</a>.
+                            </div>
+                        </div>
+
+                        <div class="referral-stats" id="loggedInStats" style="display: none;">
+                            <div class="row text-center">
+                                <div class="col-md-4">
+                                    <div class="stat-value" id="referralCount">0</div>
+                                    <p>Personas referidas</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stat-value" id="completedServices">0</div>
+                                    <p>Servicios completados</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stat-value" id="savings">$0</div>
+                                    <p>Ahorros generados</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="mt-4"><i class="bi bi-question-circle"></i> ¿Cómo funciona?</h4>
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div>Comparte tu código único con amigos, familiares o colegas</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div>Ellos deben ingresar tu código al solicitar un servicio</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div>Ambos reciben un 15% de descuento en su próximo servicio</div>
+                        </div>
+
+                        <h4 class="mt-4"><i class="bi bi-share"></i> Comparte tu código</h4>
+                        <div class="share-buttons">
+                            <button class="btn btn-primary share-btn" onclick="shareVia('whatsapp')">
+                                <i class="bi bi-whatsapp"></i> WhatsApp
+                            </button>
+                            <button class="btn btn-primary share-btn" onclick="shareVia('facebook')">
+                                <i class="bi bi-facebook"></i> Facebook
+                            </button>
+                            <button class="btn btn-primary share-btn" onclick="shareVia('email')">
+                                <i class="bi bi-envelope"></i> Email
+                            </button>
+                            <button class="btn btn-primary share-btn" onclick="copyToClipboard('generalCode')">
+                                <i class="bi bi-clipboard"></i> Copiar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-lg-8 mx-auto">
+                <div class="referral-card">
+                    <div class="referral-header">
+                        <h3><i class="bi bi-ticket-perforated"></i> Validar Código de Referido</h3>
+                    </div>
+                    <div class="referral-body">
+                        <p>Si alguien te compartió un código de referido, ingrésalo aquí para validarlo y obtener tu descuento:</p>
+                        
+                        <div class="code-input-container">
+                            <input type="text" class="form-control form-control-lg code-input" id="referralCodeInput" 
+                                   placeholder="Ej: COMPUFIX15" maxlength="12">
+                        </div>
+                        
+                        <button class="btn btn-success validate-btn" id="validateCodeBtn">
+                            <i class="bi bi-check-circle"></i> Validar Código
+                        </button>
+                        
+                        <div class="result-message" id="validationResult"></div>
+                        
+                        <div class="alert alert-success mt-3" id="successMessage" style="display: none;">
+                            <strong>¡Código válido!</strong> Al solicitar tu servicio, menciona este código para obtener tu 15% de descuento.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="bi bi-info-circle"></i> Términos y Condiciones</h4>
+                    </div>
+                    <div class="card-body">
+                        <ol>
+                            <li>El descuento del 15% aplica para ambos (referidor y referido) en su próximo servicio.</li>
+                            <li>El código debe ser mencionado al momento de solicitar el servicio.</li>
+                            <li>El descuento no es acumulable con otras promociones.</li>
+                            <li>Válido para servicios con un valor mínimo de $20.</li>
+                            <li>CompuFix se reserva el derecho de modificar o cancelar este programa en cualquier momento.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Contacto</h5>
+                    <p>Santa Tecla, La Libertad, El Salvador</p>
+                    <p>Email: info@compufix.com</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5>Horario</h5>
+                    <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 12:00 PM</p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2025 CompuFix. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Verificar si el usuario está logueado
+        document.addEventListener('DOMContentLoaded', function() {
+            const isLoggedIn = sessionStorage.getItem('compufix_loggedIn') === 'true';
+            
+            if (isLoggedIn) {
+                const userEmail = sessionStorage.getItem('compufix_userEmail');
+                const userName = sessionStorage.getItem('compufix_userName');
+                
+                // Generar código personalizado basado en el nombre y email
+                const userCode = generateReferralCode(userName, userEmail);
+                
+                // Mostrar sección de usuario logueado
+                document.getElementById('userCodeSection').innerHTML = `
+                    <p>¡Hola ${userName}! Este es tu código exclusivo:</p>
+                    <div class="discount-code" id="personalCode" onclick="copyToClipboard('personalCode')">${userCode}</div>
+                    <p class="text-center">Este código otorga un 15% de descuento tanto a ti como a tus referidos</p>
+                `;
+                
+                // Mostrar estadísticas (simuladas)
+                document.getElementById('loggedInStats').style.display = 'block';
+                document.getElementById('referralCount').textContent = '5';
+                document.getElementById('completedServices').textContent = '3';
+                document.getElementById('savings').textContent = '$22.50';
+            }
+            
+            // Configurar el botón de validación
+            document.getElementById('validateCodeBtn').addEventListener('click', validateReferralCode);
+            
+            // Permitir validar con Enter
+            document.getElementById('referralCodeInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    validateReferralCode();
+                }
+            });
+        });
+        
+        function generateReferralCode(name, email) {
+            // Generar un código simple basado en las iniciales y parte del email
+            const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+            const emailPart = email.split('@')[0].substring(0, 3).toUpperCase();
+            return `${initials}${emailPart}15`;
+        }
+        
+        function copyToClipboard(elementId) {
+            const codeElement = document.getElementById(elementId);
+            const code = codeElement.textContent;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                // Mostrar feedback visual
+                codeElement.classList.add('copied');
+                codeElement.innerHTML = '<i class="bi bi-check"></i> ¡Copiado!';
+                
+                // Restaurar después de 2 segundos
+                setTimeout(() => {
+                    codeElement.classList.remove('copied');
+                    codeElement.textContent = code;
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar: ', err);
+                alert('No se pudo copiar el código. Por favor inténtalo manualmente.');
+            });
+        }
+        
+        function shareVia(platform) {
+            const code = document.querySelector('.discount-code').textContent;
+            const message = `¡Obtén un 15% de descuento en CompuFix usando mi código de referido: ${code}! Visita www.compufix.com para más información.`;
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(message);
+            
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${text}`;
+                    break;
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`;
+                    break;
+                case 'email':
+                    shareUrl = `mailto:?subject=Descuento%20en%20CompuFix&body=${text}`;
+                    break;
+                default:
+                    return;
+            }
+            
+            window.open(shareUrl, '_blank');
+        }
+        
+        function validateReferralCode() {
+            const input = document.getElementById('referralCodeInput');
+            const resultDiv = document.getElementById('validationResult');
+            const successMessage = document.getElementById('successMessage');
+            const code = input.value.trim().toUpperCase();
+            
+            // Limpiar resultados anteriores
+            resultDiv.textContent = '';
+            resultDiv.className = 'result-message';
+            successMessage.style.display = 'none';
+            
+            if (!code) {
+                resultDiv.textContent = 'Por favor ingresa un código';
+                resultDiv.classList.add('invalid-code');
+                return;
+            }
+            
+            // Simular validación (en un caso real, esto sería una llamada al servidor)
+            const isValid = simulateCodeValidation(code);
+            
+            if (isValid) {
+                resultDiv.textContent = '✓ Código válido';
+                resultDiv.classList.add('valid-code');
+                successMessage.style.display = 'block';
+                
+                // Guardar código en sessionStorage para usarlo luego
+                sessionStorage.setItem('compufix_referralCode', code);
+            } else {
+                resultDiv.textContent = '✗ Código no válido';
+                resultDiv.classList.add('invalid-code');
+            }
+        }
+        
+        function simulateCodeValidation(code) {
+            // Expresión regular para validar el formato (3-10 letras + 2 números)
+            const codeRegex = /^[A-Z]{3,10}\d{2}$/;
+            
+            // Lista de códigos válidos (simulados)
+            const validCodes = [
+                'COMPUFIX15', 
+                'ITCA15', 
+                'TEC15', 
+                'UNI15', 
+                'EMP15',
+                'REF15'
+            ];
+            
+            // Verificar formato básico
+            if (!codeRegex.test(code)) {
+                return false;
+            }
+            
+            // Verificar si está en la lista de códigos válidos
+            return validCodes.includes(code);
+        }
+    </script>
+</body>
+</html>

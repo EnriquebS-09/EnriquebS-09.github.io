@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompuFix - Opiniones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .comment-card {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .comment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .rating-stars {
+            color: #ffc107;
+            font-size: 1.2rem;
+        }
+        .form-container {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        .rating-input label {
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: #ddd;
+            transition: color 0.2s;
+        }
+        .rating-input input[type="radio"] {
+            display: none;
+        }
+        .rating-input input[type="radio"]:checked ~ label {
+            color: #ffc107;
+        }
+        .rating-input label:hover,
+        .rating-input label:hover ~ label {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">CompuFix</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+    <li class="nav-item">
+        <a class="nav-link" href="index.html">Inicio</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="services.html">Servicios</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="services-details.html">Detalles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="referral.html">Referidos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="contact.html">Contacto</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="coment.html">Comentarios</a>
+    </li>
+    <li class="nav-item" id="profileNavItem">
+        <a class="nav-link" href="dashboard.html">Mi Perfil</a>
+    </li>
+    
+</ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container text-center py-5">
+            <h1 class="display-4">Opiniones de Nuestros Clientes</h1>
+            <p class="lead">Comparte tu experiencia con nuestros servicios técnicos</p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <!-- Comment Form -->
+        <section class="mb-5">
+            <div class="form-container bg-white">
+                <h2 class="mb-4">Deja tu Comentario</h2>
+                <form id="commentForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Calificación</label>
+                        <div class="rating-input mb-3">
+                            <input type="radio" id="star5" name="rating" value="5" required>
+                            <label for="star5">★</label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4">★</label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3">★</label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2">★</label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1">★</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="service" class="form-label">Servicio Utilizado</label>
+                        <select class="form-select" id="service" required>
+                            <option value="">Selecciona un servicio...</option>
+                            <option value="Reparación de hardware">Reparación de hardware</option>
+                            <option value="Soporte software">Soporte software</option>
+                            <option value="Mantenimiento preventivo">Mantenimiento preventivo</option>
+                            <option value="Recuperación de datos">Recuperación de datos</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="comment" class="form-label">Tu Comentario</label>
+                        <textarea class="form-control" id="comment" rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Enviar Comentario</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Comments Section -->
+        <section>
+            <h2 class="mb-4">Comentarios Recientes</h2>
+            <div id="commentsContainer">
+                <!-- Sample Comment -->
+                <div class="comment-card bg-white p-4 mb-3">
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="user-avatar me-3">J</div>
+                        <div>
+                            <h5 class="mb-1">Juan Pérez</h5>
+                            <small class="text-muted">20 de Junio, 2023</small>
+                        </div>
+                    </div>
+                    <div class="rating-stars mb-2">★★★★★</div>
+                    <p class="mb-2"><strong>Servicio: Reparación de hardware</strong></p>
+                    <p>Excelente servicio! Repararon mi laptop en menos de 24 horas. Muy profesionales y el precio fue justo.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Contacto</h5>
+                    <p>Santa Tecla, La Libertad, El Salvador</p>
+                    <p>Email: info@compufix.com</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <h5>Horario</h5>
+                    <p>Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                    <p>Sábados: 9:00 AM - 12:00 PM</p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2025 CompuFix. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const commentForm = document.getElementById('commentForm');
+            const commentsContainer = document.getElementById('commentsContainer');
+
+            loadComments();
+
+            commentForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const rating = document.querySelector('input[name="rating"]:checked').value;
+                const service = document.getElementById('service').value;
+                const commentText = document.getElementById('comment').value;
+
+                const newComment = {
+                    name,
+                    email,
+                    rating,
+                    service,
+                    comment: commentText,
+                    date: new Date().toLocaleDateString('es-ES', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    })
+                };
+
+                saveComment(newComment);
+                addCommentToDOM(newComment);
+                commentForm.reset();
+                
+                // Mostrar alerta de Bootstrap
+                const alert = document.createElement('div');
+                alert.className = 'alert alert-success alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3';
+                alert.setAttribute('role', 'alert');
+                alert.innerHTML = `
+                    <strong>¡Gracias por tu comentario!</strong> Tu opinión es muy importante para nosotros.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+                document.body.appendChild(alert);
+                
+                // Cerrar automáticamente después de 3 segundos
+                setTimeout(() => {
+                    const bsAlert = bootstrap.Alert.getOrCreateInstance(alert);
+                    bsAlert.close();
+                }, 3000);
+            });
+
+            function saveComment(comment) {
+                let comments = JSON.parse(localStorage.getItem('compufix-comments')) || [];
+                comments.unshift(comment);
+                localStorage.setItem('compufix-comments', JSON.stringify(comments));
+            }
+
+            function loadComments() {
+                const comments = JSON.parse(localStorage.getItem('compufix-comments')) || [];
+                comments.forEach(comment => addCommentToDOM(comment));
+            }
+
+            function addCommentToDOM(comment) {
+                const commentElement = document.createElement('div');
+                commentElement.className = 'comment-card bg-white p-4 mb-3';
+
+                let stars = '';
+                for (let i = 0; i < 5; i++) {
+                    stars += i < comment.rating ? '★' : '☆';
+                }
+
+                const initial = comment.name.charAt(0).toUpperCase();
+
+                commentElement.innerHTML = `
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="user-avatar me-3">${initial}</div>
+                        <div>
+                            <h5 class="mb-1">${comment.name}</h5>
+                            <small class="text-muted">${comment.date}</small>
+                        </div>
+                    </div>
+                    <div class="rating-stars mb-2">${stars}</div>
+                    <p class="mb-2"><strong>Servicio: ${comment.service}</strong></p>
+                    <p>${comment.comment}</p>
+                `;
+
+                commentsContainer.insertBefore(commentElement, commentsContainer.firstChild);
+            }
+        });
+    </script>
+</body>
+</html>
